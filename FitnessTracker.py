@@ -75,19 +75,27 @@ class GetWorkout:
         Side effects: 
             Link youtube link video 
         Returns:
-            exercise(dictionary): Defauilt value will be an empty dictionary and will add workout/diet plan as a key and url(web address) as a value.
+            exercise(dictionary): Default value will be an empty dictionary and will add workout/diet plan as a key and url(web address) as a value.
         """
-    def user_history(self):
+    def user_history(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
         Args:
-        Side Effects:
+            workout(str): a string that will contain workout plans for the user.
+            history(str): a string that will retreive the history of workouts.
         Returns:
+            Results workouts that have been done and remaining workouts the user will do.
         """
-    def notification(self):
+    def notification(self,workout,Diet,history,notif):
         """ Sends workout plan, diet plan, and video tutorial to user's email
         Args:
+            workout(str): a string that will contain workout plans for the user.
+            Diet(str): a string that will contain diet plan for the user.
+            history(str): a string that will retreive the history of workouts.
+            notif(str): a string that is created by using workout, Diet, history to send.
         Side Effects:
+            Send notification to the user's eamil.
         Returns:
+            the message of notification that will be sending to the user's email.
         """
        
 def parse_args(arglist):

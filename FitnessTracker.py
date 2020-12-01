@@ -8,7 +8,7 @@ class GetWorkout:
     def __init__(self, user):
         """Initializes a GetWorkout attribute 
         Args:
-            user():
+            user:
         Side Effects:
             Reads contents of the specified data file 
             Populate workout plans.  
@@ -83,7 +83,7 @@ class GetWorkout:
         Returns:
             Results workouts that have been done and remaining workouts the user will do.
         """
-    def notification(self,workout,history,notif):
+    def notification(self,workout,history,notif): JOMER
         """ Sends workout plan and video tutorial to user's email
         Args:
             workout(str): a string that will contain workout plans for the user.

@@ -11,6 +11,9 @@ class GetWorkout:
         Reads contents of the specified data file 
         Populate workout plans.  
     """
+        self.user = user
+        self.trainer = random.choice(['Jomer', 'Seungjoon', 'Lucy', 'Jonghyeong'])
+
     
     def user_info ():
     """ Prompts user for height (inches), weight (pounds), age, gender, and email.
@@ -25,6 +28,13 @@ class GetWorkout:
     Raise Error:
         If user does not enter an appropriate int/str
     """
+    Info = []
+    H = input(“Enter your height in inches: ”)
+	W = input(“Enter your weight in pounds: “)
+	A = input(“Enter your ages:”)
+   	G = input(“Enter your gender(M/F): ”)
+	E = input(“Enter your Email: ”)
+
     
     def bmi_calc ():
     """ Calculates BMI index using formula: BMI= 703*weight(lbs)/[height(in)]^2

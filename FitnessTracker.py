@@ -2,15 +2,19 @@ class GetWorkout:
     """Provides personalized workout schedules and diet plans.
     
     Attributes:
-    filename(str): contains the path to a .txt file containing a list of pre-made workout plans
+        user: 
     """
     
-    def __init__(self, filename):
-    """Initializes a GetWorkout attribute 
-    Side Effects:
-        Reads contents of the specified data file 
-        Populate workout plans.  
-    """
+    def __init__(self, user, trainer):
+        """Initializes a GetWorkout attribute 
+        Args:
+            user():
+        Side Effects:
+            Reads contents of the specified data file 
+            Populate workout plans.  
+        """
+        self.user = user
+        self.trainer = random.choice(['Jomer', 'Seungjoon', 'Lucy', 'Jonghyeong'])
     
     def user_info ():
     """ Prompts user for height (inches), weight (pounds), age, gender, and email.
@@ -51,11 +55,12 @@ class GetWorkout:
         Estimated number of calories needed to maintain current weight
     """
         
-    def workoutplan(self, workout):
+    def workoutplan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
         preference and creates a tailored workout plan.
         
         Args:
+            filename(str): contains the path to a .txt file containing a list of pre-made workout plans
             workout(str): a string that will contain workout plans for the user.
         """
         

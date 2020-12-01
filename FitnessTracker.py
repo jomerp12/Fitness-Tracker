@@ -106,17 +106,22 @@ class GetWorkout:
             Returns:
                 A confirmation receipt.
         """
-        port = 587
+        port = 465  
         smtp_server = "smtp.gmail.com"
-        sender_email = "fitnesstrackerINST326@gmail.com"
-        receiver_email = (f'{user_email}')
+        sender_email = "fitnesstrackerINST326@gmail.com"  
+        receiver_email = f'{user_email}'  
         password = '12345!@#$%'
         message = """\
-        Subject: Hi {user},
+        Subject: Hi there
 
-        Attached you will find your workout plan for the day and your daily history.
-        
         This message is sent from Python."""
+
+        context = ssl.create_default_context()
+        with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
+            server.login(sender_email, password)
+            server.sendmail(sender_email, receiver_email, message)
+            
+        print ('Message has been successfully sent!')
         
 def parse_args(arglist):
     """ parse command-line arguments."""

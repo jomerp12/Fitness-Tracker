@@ -1,11 +1,11 @@
 class GetWorkout:
-    """Provides personalized workout schedules and diet plans.
+    """Provides personalized workout schedules a plan.
     
     Attributes:
         user: 
     """
     
-    def __init__(self, user, trainer):
+    def __init__(self, user):
         """Initializes a GetWorkout attribute 
         Args:
             user():
@@ -60,27 +60,20 @@ class GetWorkout:
         preference and creates a tailored workout plan.
         
         Args:
-            filename(str): contains the path to a .txt file containing a list of pre-made workout plans
-            workout(str): a string that will contain workout plans for the user.
+            filename(str): contains a list of workout plans 
+        
+        Returns:
+            returns workout plan based on the user's preference.
         """
         
-    def dietplan(self, Diet):
-        """Sorts keys of the GetWorkout attribute according to user's 
-        preference and creates a tailored diet plan.
-        
-        Args:
-            Diet(str): a string that will contain diet plan for the user.
-        """
-        
-    def video_tutorial(self,workout,Diet):
-        """ provides video_tutorial based on the specific exercise of workout/diet plan given by the methods.
+    def video_tutorial(self,workout):
+        """ provides video_tutorial based on the specific exercise of workout given by the methods.
         Args:
             workout(str): a string that will contain workout plans for the user.
-            Diet(str): a string that will contain diet plan for the user.
         Side effects: 
             Link youtube link video 
         Returns:
-            exercise(dictionary): Default value will be an empty dictionary and will add workout/diet plan as a key and url(web address) as a value.
+            exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
     def user_history(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
@@ -90,13 +83,12 @@ class GetWorkout:
         Returns:
             Results workouts that have been done and remaining workouts the user will do.
         """
-    def notification(self,workout,Diet,history,notif):
-        """ Sends workout plan, diet plan, and video tutorial to user's email
+    def notification(self,workout,history,notif):
+        """ Sends workout plan and video tutorial to user's email
         Args:
             workout(str): a string that will contain workout plans for the user.
-            Diet(str): a string that will contain diet plan for the user.
             history(str): a string that will retreive the history of workouts.
-            notif(str): a string that is created by using workout, Diet, history to send.
+            notif(str): a string that is created by using workout, history to send.
         Side Effects:
             Send notification to the user's eamil.
         Returns:
@@ -106,10 +98,9 @@ class GetWorkout:
 def parse_args(arglist):
     """ parse command-line arguments."""
         
-def main(filename,workout,Diet):
+def main(filename,workout):
     """ provide a space to store our arguments and execute desired plan.
     Args:
         filename(str): contains the path to a .txt file containing a list of pre-made workout plans
-        workout(str): a string that will contain workout plans for the user.
-        Diet(str): a string that will contain diet plan for the user. 
+        workout(str): a string that will contain workout plans for the user. 
     """

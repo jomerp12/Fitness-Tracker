@@ -110,7 +110,7 @@ class GetWorkout:
         smtp_server = "smtp.gmail.com"
         sender_email = "fitnesstrackerINST326@gmail.com"
         receiver_email = (f'{user_email}')
-        password = "12345!@#$%"
+        password = '12345!@#$%'
         message = """\
         Subject: Hi {user},
 

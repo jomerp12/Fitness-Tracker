@@ -83,16 +83,13 @@ class GetWorkout:
         Returns:
             Results workouts that have been done and remaining workouts the user will do.
         """
-    def notification(self,workout,history,notif): JOMER
-        """ Sends workout plan and video tutorial to user's email
-        Args:
-            workout(str): a string that will contain workout plans for the user.
-            history(str): a string that will retreive the history of workouts.
-            notif(str): a string that is created by using workout, history to send.
-        Side Effects:
-            Send notification to the user's eamil.
-        Returns:
-            the message of notification that will be sending to the user's email.
+    def notification(self):
+        """ Sends an email to the user containing recommended workout plan and user history information.
+       
+            Side Effects:
+                Sends notification to the user's eamil.
+            Returns:
+                A confirmation receipt.
         """
        
 def parse_args(arglist):

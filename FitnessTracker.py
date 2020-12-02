@@ -1,4 +1,5 @@
 import smtplib, ssl
+import requests, re, pandas as pd, time, webbrowser, sys
 
 class GetWorkout:
     """Provides personalized workout schedules a plan.
@@ -102,6 +103,9 @@ class GetWorkout:
         Returns:
             exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
+        exercises_dict = dict()
+        exercises_dict['Shoulder Press'] = 'https://www.youtube.com/watch?v=Fek7QcFOgl8'
+        webbrowser.open_new(exercises_dict['Shoulder Press'])
         
     def User_History(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 

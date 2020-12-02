@@ -29,12 +29,12 @@ class GetWorkout:
         Raise Error:
             If user does not enter an appropriate int/str
         """
-        Info = []
-        H = input(“Enter your height in inches: ”)
-        W = input(“Enter your weight in pounds: “)
-        A = input(“Enter your ages:”)
-        G = input(“Enter your gender(M/F): ”)
-        E = input(“Enter your Email: ”)
+        userInfo = dict()
+        height = input('Enter your height in inches: ')
+        weight = input('Enter your weight in pounds: ')
+        age = input('Enter your age: ')
+        gender = input('Enter your gender [M/F]: ')
+        email = input('Enter your e-mail address: ')
 
     
     def bmi_calc (self,height, weight):
@@ -113,6 +113,7 @@ class GetWorkout:
         password = '12345!@#$%'
         message = """\
         Subject: Hi there
+
 
         This message is sent from Python."""
 

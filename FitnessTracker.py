@@ -7,13 +7,13 @@ class GetWorkout:
         user: 
     """
     
-    def __init__(self,user):
+    def __init__(self,name):
         """Initializes a GetWorkout attribute 
         Side Effects:
             Reads contents of the specified data file 
             Populate workout plans.  
         """
-        self.user = user
+        self.name = name
         self.trainer = random.choice(['Jomer', 'Seungjoon', 'Lucy', 'Jonghyeong'])
     
     def user_info (self):
@@ -33,7 +33,7 @@ class GetWorkout:
         counter = 0
         while counter < 3:      #I ran this counter just to make sure that duplicate names were not being stored in the same dictionary. Although there are people with the same name we will have
                                 # to work around this somehow. This way, we can store the workout plan and bmi results under that user's key.
-            name = input('Enter your name: ')
+            self.name = name
             height = input('Enter your height in inches: ')
             weight = input('Enter your weight in pounds: ')
             age = input('Enter your age: ')
@@ -57,13 +57,14 @@ class GetWorkout:
         Returns:
             BMI index and whether the value is considered underweight, normal weight, overweight, or obese. 
         """
-        BMI = (703 * weight) / (height ^ 2)
+        BMI = (703 * 175) / (68 ** 2)
         if BMI < 18.5:
-            return (f'Your BMI is: {BMI}. You are underweight')
+            print (f'Your BMI is: {BMI}. You are underweight')
         elif BMI > 18.5 and BMI < 24.9:
-            return(f'Your BMI is: {BMI}. Congrats! You are healthy')
+            print(f'Your BMI is: {BMI}. Congrats! You are healthy')
         elif BMI > 25:
-            return (f'Your BMI is: {BMI}. You are overweight')
+            print (f'Your BMI is: {BMI}. You are overweight')
+        userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
 
     
     def calorie_calc ():

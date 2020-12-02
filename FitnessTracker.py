@@ -30,11 +30,21 @@ class GetWorkout:
             If user does not enter an appropriate int/str
         """
         userInfo = dict()
-        height = input('Enter your height in inches: ')
-        weight = input('Enter your weight in pounds: ')
-        age = input('Enter your age: ')
-        gender = input('Enter your gender [M/F]: ')
-        email = input('Enter your e-mail address: ')
+        counter = 0
+        while counter < 3:      #I ran this counter just to make sure that duplicate names were not being stored in the same dictionary. Although there are people with the same name we will have
+                                # to work around this somehow. This way, we can store the workout plan and bmi results under that user's key.
+            name = input('Enter your name: ')
+            height = input('Enter your height in inches: ')
+            weight = input('Enter your weight in pounds: ')
+            age = input('Enter your age: ')
+            gender = input('Enter your gender [M/F]: ')
+            email = input('Enter your e-mail address: ')
+
+            if name != userInfo:
+                userInfo.update({name: {'height': height, 'weight' : weight, 'age': age, 'gender': gender, 'email' : email}})
+            else:
+                print('You already have an account with us.')
+            counter+= 1
 
     
     def bmi_calc (self,height, weight):

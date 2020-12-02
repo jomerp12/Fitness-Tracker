@@ -78,6 +78,17 @@ class GetWorkout:
             
         self.stored_data.append({'BMR': BMR})
     
+    def User_History(self,workout,history):
+        """ Keeps a running log of workouts already assigned to ensure no repeats. 
+        Args:
+            workout(str): a string that will contain workout plans for the user.
+            history(str): a string that will retreive the history of workouts.
+        Returns:
+            Results workouts that have been done and remaining workouts the user will do.
+        """
+        user_hist_dict = dict()
+        workout = Workout_Plan
+        user_hist_dict.append(workout) #This dictionary is storing workouts assigned to the user. 
         
     def Workout_Plan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
@@ -89,10 +100,13 @@ class GetWorkout:
         Returns:
             returns workout plan based on the user's preference.
         """
+        workoutplan = dict()
         with open(filename, 'r') as work_out:
 		    work_out = work_out.read()
 		    self.stored_data[] = 
 
+            if exercise not in user_hist_dict:
+                workoutplan.append(exercise)
         
     def Video_Tutorial(self,workout):
         """ provides video_tutorial based on the specific exercise of workout given by the methods.
@@ -107,15 +121,6 @@ class GetWorkout:
         exercises_dict['Shoulder Press'] = 'https://www.youtube.com/watch?v=Fek7QcFOgl8'
         webbrowser.open_new(exercises_dict['Shoulder Press'])
         
-    def User_History(self,workout,history):
-        """ Keeps a running log of workouts already assigned to ensure no repeats. 
-        Args:
-            workout(str): a string that will contain workout plans for the user.
-            history(str): a string that will retreive the history of workouts.
-        Returns:
-            Results workouts that have been done and remaining workouts the user will do.
-        """
-        
     def Notification(self):
         """ Sends an email to the user containing recommended workout plan and user history information.
        
@@ -126,7 +131,7 @@ class GetWorkout:
         """
         port = 465  
         smtp_server = "smtp.gmail.com"
-        sender_email = "fitnesstrackerINST326@gmail.com"  
+        sender_email = "fitnesstrackerINST326@gmail.com"  #I created this email just for this purpose
         receiver_email = f'{self.stored_data['email']}'  
         password = '12345!@#$%'
         message = f"""\

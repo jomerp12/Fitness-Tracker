@@ -67,19 +67,26 @@ class GetWorkout:
         userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
 
     
-    def calorie_calc ():
-    """ Calculates calories using BMR formula:
-    Args:
-        height(int): height of the user in inches
-        weight (int): weight of user in pounds
-        age (int): age of the user
-        gender(str): male/female
-    Side Effects: 
-        Male BMR formula: 66 + (6.3 x body weight in lbs.) + (12.9 x height in inches) - (6.8 x age in years)
-        Female BMR formula: 655 + (4.3 x weight in lbs.) + (4.7 x height in inches) - (4.7 x age in years)
-    Returns: 
-        Estimated number of calories needed to maintain current weight
-    """
+    def calorie_calc (height, weight, age, gender):
+        """ Calculates calories using BMR formula:
+        Args:
+            height(int): height of the user in inches
+            weight (int): weight of user in pounds
+            age (int): age of the user
+            gender(str): male/female
+        Side Effects: 
+            Male BMR formula: 66 + (6.3 x body weight in lbs.) + (12.9 x height in inches) - (6.8 x age in years)
+            Female BMR formula: 655 + (4.3 x weight in lbs.) + (4.7 x height in inches) - (4.7 x age in years)
+        Returns: 
+            Estimated number of calories needed to maintain current weight
+        """
+        if gender == 'M':
+            BMR = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age)
+        else:
+            BMR = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age)
+            
+        userInfo[name].append({'BMR': BMR})
+    
         
     def workoutplan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
@@ -120,12 +127,13 @@ class GetWorkout:
         port = 465  
         smtp_server = "smtp.gmail.com"
         sender_email = "fitnesstrackerINST326@gmail.com"  
-        receiver_email = f'{user_email}'  
+        receiver_email = f'{userInfo[self.name]['email']}'  
         password = '12345!@#$%'
-        message = """\
-        Subject: Hi there
+        message = f"""\
+        Subject: Hi {self.name}
 
-
+        Attached you can find your workout plan along with a copy of your user history information.
+        
         This message is sent from Python."""
 
         context = ssl.create_default_context()

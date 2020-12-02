@@ -15,8 +15,9 @@ class GetWorkout:
         """
         self.name = name
         self.trainer = random.choice(['Jomer', 'Seungjoon', 'Lucy', 'Jonghyeong'])
+        self.stored_data = dict()
     
-    def user_info (self):
+    def User_Info (self):
         """ Prompts user for height (inches), weight (pounds), age, gender, and email.
         Args: 
             height(int): height of the user in inches
@@ -29,25 +30,14 @@ class GetWorkout:
         Raise Error:
             If user does not enter an appropriate int/str
         """
-        userInfo = dict()
-        counter = 0
-        while counter < 3:      #I ran this counter just to make sure that duplicate names were not being stored in the same dictionary. Although there are people with the same name we will have
-                                # to work around this somehow. This way, we can store the workout plan and bmi results under that user's key.
-            self.name = name
-            height = input('Enter your height in inches: ')
-            weight = input('Enter your weight in pounds: ')
-            age = input('Enter your age: ')
-            gender = input('Enter your gender [M/F]: ')
-            email = input('Enter your e-mail address: ')
-
-            if name != userInfo:
-                userInfo.update({name: {'height': height, 'weight' : weight, 'age': age, 'gender': gender, 'email' : email}})
-            else:
-                print('You already have an account with us.')
-            counter+= 1
-
-    
-    def bmi_calc (self,height, weight):
+        height = input('Enter your height in inches: ')
+        weight = input('Enter your weight in pounds: ')
+        age = input('Enter your age: ')
+        gender = input('Enter your gender [M/F]: ')
+        email = input('Enter your e-mail address: ')
+        self.stored_data.update({'name': self.name, 'height': height, 'weight' : weight, 'age': age, 'gender': gender, 'email' : email})
+        
+    def BMI_Calculator (self,height, weight):
         """ Calculates BMI index using formula: BMI= 703*weight(lbs)/[height(in)]^2
         Args:
             height(int): height of the user in inches
@@ -64,10 +54,10 @@ class GetWorkout:
             print(f'Your BMI is: {BMI}. Congrats! You are healthy')
         elif BMI > 25:
             print (f'Your BMI is: {BMI}. You are overweight')
-        userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
+        self.stored_data.update({'BMI': BMI})
 
     
-    def calorie_calc (height, weight, age, gender):
+    def Calories_Calculator (height, weight, age, gender):
         """ Calculates calories using BMR formula:
         Args:
             height(int): height of the user in inches
@@ -85,10 +75,10 @@ class GetWorkout:
         else:
             BMR = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age)
             
-        userInfo[name].append({'BMR': BMR})
+        self.stored_data.append({'BMR': BMR})
     
         
-    def workoutplan(self, filename):
+    def Workout_Plan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
         preference and creates a tailored workout plan.
         
@@ -98,8 +88,12 @@ class GetWorkout:
         Returns:
             returns workout plan based on the user's preference.
         """
+        with open(filename, 'r') as work_out:
+		    work_out = work_out.read()
+		    self.stored_data[] = 
+
         
-    def video_tutorial(self,workout):
+    def Video_Tutorial(self,workout):
         """ provides video_tutorial based on the specific exercise of workout given by the methods.
         Args:
             workout(str): a string that will contain workout plans for the user.
@@ -108,7 +102,8 @@ class GetWorkout:
         Returns:
             exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
-    def user_history(self,workout,history):
+        
+    def User_History(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
         Args:
             workout(str): a string that will contain workout plans for the user.
@@ -116,7 +111,8 @@ class GetWorkout:
         Returns:
             Results workouts that have been done and remaining workouts the user will do.
         """
-    def notification(self):
+        
+    def Notification(self):
         """ Sends an email to the user containing recommended workout plan and user history information.
        
             Side Effects:
@@ -127,7 +123,7 @@ class GetWorkout:
         port = 465  
         smtp_server = "smtp.gmail.com"
         sender_email = "fitnesstrackerINST326@gmail.com"  
-        receiver_email = f'{userInfo[self.name]['email']}'  
+        receiver_email = f'{self.stored_data['email']}'  
         password = '12345!@#$%'
         message = f"""\
         Subject: Hi {self.name}
@@ -145,6 +141,10 @@ class GetWorkout:
         
 def parse_args(arglist):
     """ parse command-line arguments."""
+    parser= ArgumentParser()
+	parser.add_argument(“”, help = “ ”)
+    parser.add_argument(“”, help = “ ”)
+    Return parser.parse_args(arglist)	
         
 def main(filename):
     """ provide a space to store our arguments and execute desired plan.

@@ -1,6 +1,6 @@
 import smtplib, ssl
 from argparse import ArgumentParser
-import sys
+import requests, re, pandas as pd, time, webbrowser, sys
 class GetWorkout:
     """Provides personalized workout schedules a plan.
     
@@ -61,8 +61,7 @@ class GetWorkout:
             print (f'Your BMI is: {BMI}. You are overweight')
         userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
 
-    
-    def calorie_calc ():
+    def Calories_Calculator (height, weight, age, gender)::
         """ Calculates calories using BMR formula:
         Args:
             height(int): height of the user in inches
@@ -75,7 +74,13 @@ class GetWorkout:
         Returns: 
             Estimated number of calories needed to maintain current weight
         """
-    
+        if gender == 'M':
+            BMR = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age)
+        else:
+            BMR = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age)
+
+        self.stored_data.append({'BMR': BMR})
+        
     def workoutplan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
         preference and creates a tailored workout plan.
@@ -86,7 +91,13 @@ class GetWorkout:
         Returns:
             returns workout plan based on the user's preference.
         """
-        
+        workoutplan = dict()
+        with open(filename, 'r') as work_out:
+		    work_out = work_out.read()
+		    self.stored_data[] = 
+
+            if exercise not in user_hist_dict:
+                workoutplan.append(exercise)
     def video_tutorial(self,workout):
         """ provides video_tutorial based on the specific exercise of workout given by the methods.
         Args:
@@ -96,7 +107,12 @@ class GetWorkout:
         Returns:
             exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
-    def user_history(self,workout,history):
+        exercises_dict = dict()
+        exercises_dict['Shoulder Press'] = 'https://www.youtube.com/watch?v=Fek7QcFOgl8'
+        webbrowser.open_new(exercises_dict['Shoulder Press'])
+
+
+    def User_History(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
         Args:
             workout(str): a string that will contain workout plans for the user.
@@ -104,6 +120,10 @@ class GetWorkout:
         Returns:
             Results workouts that have been done and remaining workouts the user will do.
         """
+        user_hist_dict = dict()
+        workout = Workout_Plan
+        user_hist_dict.append(workout) #This dictionary is storing workouts assigned to the user. 
+
     def notification(self):
         """ Sends an email to the user containing recommended workout plan and user history information.
        
@@ -114,13 +134,15 @@ class GetWorkout:
         """
         port = 465  
         smtp_server = "smtp.gmail.com"
-        sender_email = "fitnesstrackerINST326@gmail.com"  
-        receiver_email = f'{user_email}'  
+        sender_email = "fitnesstrackerINST326@gmail.com"  #I created this email just for this purpose
+        receiver_email = f'{self.stored_data['email']}'   
         password = '12345!@#$%'
-        message = """\
-        Subject: Hi there
+        message = f"""\
+        Subject: Hi {self.name}
 
 
+        Attached you can find your workout plan along with a copy of your user history information.
+        
         This message is sent from Python."""
 
         context = ssl.create_default_context()
@@ -141,7 +163,7 @@ def parse_args(arglist):
     parser.add_argument("email", help="email of the user")
     return parser.parse_args(arglist)
     
-def main(name,height,weight,age,gender,email):
+def main(name,height,weight,age,gender,email): # partially completed
     """ provide a space to store our arguments and execute desired plan.
     Args:
         filename(str): contains the path to a .txt file containing a list of pre-made workout plans
@@ -149,8 +171,7 @@ def main(name,height,weight,age,gender,email):
     """
     g = GetWorkout(name,height,weight,age,gender,email)
     a = g.user_info(name,height,weight,age,gender,email)
-    print(a)
     
-if __name__ == "__main__":
+if __name__ == "__main__": # partially completed
     args = parse_args(sys.argv[1:])
     main(args.name,args.height,args.weight,args.age,args.gender,args.email)

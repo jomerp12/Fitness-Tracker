@@ -10,7 +10,11 @@ import sys
 =======
 from argparse import ArgumentParser
 import sys
+<<<<<<< HEAD
 >>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
+=======
+import webbrowser
+>>>>>>> 333bd53da93871a72d2478bd5a92fc1903a7ac32
 class GetWorkout:
     """Provides personalized workout schedules a plan.
     
@@ -70,6 +74,7 @@ class GetWorkout:
         elif BMI > 25:
             print (f'Your BMI is: {BMI}. You are overweight')
         userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
+<<<<<<< HEAD
 
     
     def calorie_calc ():
@@ -113,6 +118,8 @@ class GetWorkout:
         Returns: 
             Estimated number of calories needed to maintain current weight
         """
+=======
+>>>>>>> 333bd53da93871a72d2478bd5a92fc1903a7ac32
     
 <<<<<<< HEAD
 >>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
@@ -148,6 +155,21 @@ class GetWorkout:
         Returns:
             exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
+        if day1: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=QXmdXilQaqA")
+        elif day2: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=LZlHNVNcxF8")
+        elif day3: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=IXTp_Ww_4zY")
+        elif day4: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=rHlb8yfdDzo")
+        elif day5: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=zwAkH0XFrgw")
+        elif day6: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=AesCuT1E_hw")
+        elif day7: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=C4a0D36_e2E")
+            
     def user_history(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
         Args:

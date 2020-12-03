@@ -1,6 +1,7 @@
 import smtplib, ssl
 from argparse import ArgumentParser
 import sys
+import webbrowser
 class GetWorkout:
     """Provides personalized workout schedules a plan.
     
@@ -60,21 +61,6 @@ class GetWorkout:
         elif BMI > 25:
             print (f'Your BMI is: {BMI}. You are overweight')
         userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
-
-    
-    def calorie_calc ():
-        """ Calculates calories using BMR formula:
-        Args:
-            height(int): height of the user in inches
-            weight (int): weight of user in pounds
-            age (int): age of the user
-            gender(str): male/female
-        Side Effects: 
-            Male BMR formula: 66 + (6.3 x body weight in lbs.) + (12.9 x height in inches) - (6.8 x age in years)
-            Female BMR formula: 655 + (4.3 x weight in lbs.) + (4.7 x height in inches) - (4.7 x age in years)
-        Returns: 
-            Estimated number of calories needed to maintain current weight
-        """
     
     def workoutplan(self, filename):
         """Sorts keys of the GetWorkout attribute according to user's 
@@ -96,6 +82,21 @@ class GetWorkout:
         Returns:
             exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
         """
+        if day1: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=QXmdXilQaqA")
+        elif day2: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=LZlHNVNcxF8")
+        elif day3: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=IXTp_Ww_4zY")
+        elif day4: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=rHlb8yfdDzo")
+        elif day5: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=zwAkH0XFrgw")
+        elif day6: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=AesCuT1E_hw")
+        elif day7: 
+            webbrowser.open_new("https://www.youtube.com/watch?v=C4a0D36_e2E")
+            
     def user_history(self,workout,history):
         """ Keeps a running log of workouts already assigned to ensure no repeats. 
         Args:

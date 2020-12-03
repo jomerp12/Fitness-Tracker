@@ -59,9 +59,9 @@ class GetWorkout:
             print(f'Your BMI is: {BMI}. Congrats! You are healthy')
         elif BMI > 25:
             print (f'Your BMI is: {BMI}. You are overweight')
-        userInfo.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
+        self.user_information.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
 
-    def Calories_Calculator (height, weight, age, gender)::
+    def Calories_Calculator (height, weight, age, gender):
         """ Calculates calories using BMR formula:
         Args:
             height(int): height of the user in inches
@@ -79,25 +79,9 @@ class GetWorkout:
         else:
             BMR = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age)
 
-        self.stored_data.append({'BMR': BMR})
+        self.user_information.append({'BMR': BMR})
         
-    def workoutplan(self, filename):
-        """Sorts keys of the GetWorkout attribute according to user's 
-        preference and creates a tailored workout plan.
-        
-        Args:
-            filename(str): contains a list of workout plans 
-        
-        Returns:
-            returns workout plan based on the user's preference.
-        """
-        workoutplan = dict()
-        with open(filename, 'r') as work_out:
-		    work_out = work_out.read()
-		    self.stored_data[] = 
 
-            if exercise not in user_hist_dict:
-                workoutplan.append(exercise)
     def video_tutorial(self,workout):
         """ provides video_tutorial based on the specific exercise of workout given by the methods.
         Args:
@@ -135,7 +119,7 @@ class GetWorkout:
         port = 465  
         smtp_server = "smtp.gmail.com"
         sender_email = "fitnesstrackerINST326@gmail.com"  #I created this email just for this purpose
-        receiver_email = f'{self.stored_data['email']}'   
+        receiver_email = f'{self.user_information['email']}'   
         password = '12345!@#$%'
         message = f"""\
         Subject: Hi {self.name}
@@ -171,7 +155,7 @@ def main(name,height,weight,age,gender,email): # partially completed
     """
     g = GetWorkout(name,height,weight,age,gender,email)
     a = g.user_info(name,height,weight,age,gender,email)
-    
+    print(a)
 if __name__ == "__main__": # partially completed
     args = parse_args(sys.argv[1:])
     main(args.name,args.height,args.weight,args.age,args.gender,args.email)

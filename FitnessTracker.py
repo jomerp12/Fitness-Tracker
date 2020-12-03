@@ -1,7 +1,12 @@
 import smtplib, ssl
 <<<<<<< HEAD
+<<<<<<< HEAD
 import csv
 
+=======
+from argparse import ArgumentParser
+import sys
+>>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
 =======
 from argparse import ArgumentParser
 import sys
@@ -69,6 +74,7 @@ class GetWorkout:
     
     def calorie_calc ():
 <<<<<<< HEAD
+<<<<<<< HEAD
     """ Calculates calories using BMR formula:
     Args:
         height(int): height of the user in inches
@@ -93,6 +99,8 @@ class GetWorkout:
             userInfo.update({name: {'BMR': bmr_woemn}})
         
 =======
+=======
+>>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
         """ Calculates calories using BMR formula:
         Args:
             height(int): height of the user in inches
@@ -106,6 +114,9 @@ class GetWorkout:
             Estimated number of calories needed to maintain current weight
         """
     
+<<<<<<< HEAD
+>>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
+=======
 >>>>>>> 9264444770a6afed3271d029ca6ed241a7cb666e
     def workoutplan(self, filename):
         """Get a workout plan from a file and check the user history for any past

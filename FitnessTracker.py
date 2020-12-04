@@ -81,7 +81,25 @@ class GetWorkout:
 
         self.user_information.append({'BMR': BMR})
         
+     def workoutplan(self, filename):	
+        """Sorts keys of the GetWorkout attribute according to user's 	
+        preference and creates a tailored workout plan.	
+        	
+        Args:	
+            filename(str): contains a list of workout plans 	
+        	
+        Returns:	
+            returns workout plan based on the user's preference.	
+        """	
+        workoutplan = dict()	
+        with open(filename, 'r') as work_out:	
+		    work_out = work_out.read()	
+		    self.stored_data[] = 	
 
+
+            if exercise not in user_hist_dict:	
+                workoutplan.append(exercise)
+                
     def video_tutorial(self,workout):
         """ provides video_tutorial based on the specific exercise of workout given by the methods.
         Args:

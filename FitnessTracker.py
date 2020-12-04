@@ -187,3 +187,4 @@ def main(name,height,weight,age,gender,email): # This main function currently ta
 if __name__ == "__main__": # partially completed (only user_info method is currently running in main function)
    args = parse_args(sys.argv[1:])
    main(args.name,args.height,args.weight,args.age,args.gender,args.email)
+

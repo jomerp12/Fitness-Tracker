@@ -38,7 +38,7 @@ class GetWorkout:
                 print('you already have an account on us')
             counter+=1
            
-    def bmi_calc (self,name,height, weight): 
+    def bmi_calc (self,height, weight): 
         """ Calculates BMI index using formula: BMI= 703*weight(lbs)/[height(in)]^2
         Args:
             name(str): name of the user
@@ -48,14 +48,14 @@ class GetWorkout:
         Returns:
             BMI index and BMI health category 
         """
-        BMI = (703 * weight) / (height ** 2)
+        BMI = (703 * int(weight)) / (int(height) ** 2)
         if BMI < 18.5:
             print (f'Your BMI is: {BMI}. You are underweight')
         elif BMI > 18.5 and BMI < 24.9:
             print(f'Your BMI is: {BMI}. Congrats! You are healthy')
         elif BMI > 25:
             print (f'Your BMI is: {BMI}. You are overweight')
-        self.user_information.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
+        return self.user_information[self.name].update({'BMI': BMI}) #This is meant to add onto the user's history dictionary created above on the user_info function
        
     def Calories_Calculator (self,height, weight, age, gender):
         """ Calculates calories using BMR formula:
@@ -69,11 +69,11 @@ class GetWorkout:
             Estimated number of calories needed to maintain current weight
         """
         if gender == 'M':
-            BMR = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age)
+            BMR = 66 + (float(6.3) * int(weight)) + (float(12.9) * int(height)) - (float(6.8) * int(age))
         else:
-            BMR = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age)
+            BMR = 655 + (float(4.3) * int(weight)) + (float(4.7) * int(height)) - (float(4.7) * int(age))
  
-       self.user_information.update({'BMR': BMR})
+        return self.user_information[self.name].update({'BMR': BMR})
       
     def workoutplan(self, filename):
         """Get a workout plan from a file and store a tailored workout plan.
@@ -188,9 +188,14 @@ def main(name,height,weight,age,gender,email): # This main function currently ta
     """
     g = GetWorkout(name,height,weight,age,gender,email)
     a = g.user_info(name,height,weight,age,gender,email)
+    r = g.Calories_Calculator(height, weight, age, gender)
+    b = g.bmi_calc(height, weight)
     print(a)
 
 if __name__ == "__main__": # partially completed (only user_info method is currently running in main function)
     args = parse_args(sys.argv[1:])
     main(args.name,args.height,args.weight,args.age,args.gender,args.email)
+
+    # Sample running code
+    # python3 FitnessTracker.py Jong 70 175 20 M aengida@gmail.com
 

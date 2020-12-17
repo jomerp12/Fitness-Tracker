@@ -5,30 +5,30 @@ import requests, re, pandas as pd, time, webbrowser, sys
 class GetWorkout:
    """ Program to generate a daily 7- day workout plan"""
    def __init__(self,name,height,weight,age,gender,email): 
-        """Initializes a GetWorkout attribute.
-
-	    Attributes:
-		    name: name attribute is initialized for the user information.
-		    user_information: An empty dictionary attribute for storing user information.
-
-        """
+       """Initializes a GetWorkout attribute
+	Attributes:
+		name: name attribute is initialized for the user information.
+		user_information: An empty dictionary attribute for storing user information.
+       Side Effects:
+           Reads contents of the specified data file
+           Populate workout plans. 
+       """
        self.name = name
        self.user_information = dict()
    def user_info (self,name,height,weight,age,gender,email): 
-        """ Prompts users for name, height (inches), weight (pounds), age, gender (M/F) , and email to store users' information in the empty dictionary,
-            and to calculate their BMI and BRM.
-        
-        Args:
-	        name(str): name of the user
-            height(int): height of the user in inches
-            weight (int): weight of user in pounds
-            age (int): age of the user
-            gender(str): male/female ('M' refers to male/ 'F' refers to female)
-            email(str): email address of user
-
-        Raise Error:
-            If user does not enter an appropriate int/str
-        """
+       """ Prompts users for name, height (inches), weight (pounds), age, gender (M/F) , and email. This method collects user information(name,height,weight,age,gender,email) as values and keys will be named corresponding to the values. Type of values in the dictionary will vary depending on the arguments. Some can have strings, integers or others.
+       Args:
+	    name(str): name of the user
+           height(int): height of the user in inches
+           weight (int): weight of user in pounds
+           age (int): age of the user
+           gender(str): male/female
+           email(str): email address of user
+       Side Effects:
+           Stores this information into a list.
+       Raise Error:
+           If user does not enter an appropriate int/str
+       """
        counter = 0
        while counter <3: #I ran this counter just to make sure that duplicate names were not being stored in the same dictionary. Although there are people with the same name we will have to work around this somehow. This way, we can store the workout plan and bmi results under that user's key.
            self.name = name
@@ -40,15 +40,15 @@ class GetWorkout:
            counter+=1
            
    def bmi_calc (self,name,height, weight): 
-        """ Calculates BMI index using formula: BMI= 703*weight(lbs)/[height(in)]^2
-        Args:
-            name(str): name of the user
-            height(int): height of the user in inches
-            weight (int): weight of user in pounds
-
-        Returns:
-            BMI index and BMI health category 
-        """
+       """ Calculates BMI index using formula: BMI= 703*weight(lbs)/[height(in)]^2
+       Args:
+           height(int): height of the user in inches
+           weight (int): weight of user in pounds
+       Side Effects:
+           Analyze BMI index into a health category: underweight, healthy, or overweight 
+       Returns:
+           BMI index and BMI health category 
+       """
        BMI = (703 * weight) / (height ** 2)
        if BMI < 18.5:
            print (f'Your BMI is: {BMI}. You are underweight')
@@ -59,16 +59,18 @@ class GetWorkout:
        self.user_information.update({name: {'BMI': BMI}}) #This is meant to add onto the user's history dictionary created above on the user_info function
        
    def Calories_Calculator (self,height, weight, age, gender):
-        """ Calculates calories using BMR formula.
-        Args:
-            height(int): height of the user in inches
-            weight (int): weight of user in pounds
-            age (int): age of the user
-            gender(str): ('M' refers to male/ 'F' refers to female)
-
-        Returns:
-            Estimated number of calories needed to maintain current weight
-        """
+       """ Calculates calories using BMR formula:
+       Args:
+           height(int): height of the user in inches
+           weight (int): weight of user in pounds
+           age (int): age of the user
+           gender(str): male/female
+       Side Effects:
+           Male BMR formula: 66 + (6.3 x body weight in lbs.) + (12.9 x height in inches) - (6.8 x age in years)
+           Female BMR formula: 655 + (4.3 x weight in lbs.) + (4.7 x height in inches) - (4.7 x age in years)
+       Returns:
+           Estimated number of calories needed to maintain current weight
+       """
        if gender == 'M':
            BMR = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age)
        else:
@@ -94,35 +96,36 @@ class GetWorkout:
         return workoutplan_list
     
    def video_tutorial(self,workout):
-        """ Link to youtube tutorial according to workout plan day. 
-        Args:
-            workout(str): a string that will contain workout plans for the user.
-
-        Returns:
-            exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
-        """
-        exercises_dict = dict()
-        if day1: 
+       """ Link to youtube tutorial according to workout plan day. 
+       Args:
+           workout(str): a string that will contain workout plans for the user.
+       Side effects:
+           Link youtube link video
+       Returns:
+           exercise(dictionary): Default value will be an empty dictionary and will add workout as a key and url(web address) as a value.
+       """
+       exercises_dict = dict()
+       if day1: 
             webbrowser.open_new("https://www.youtube.com/watch?v=QXmdXilQaqA")
-        elif day2:
+       elif day2:
             webbrowser.open_new("https://www.youtube.com/watch?v=LZlHNVNcxF8")
-        elif day3: 
+       elif day3: 
             webbrowser.open_new("https://www.youtube.com/watch?v=IXTp_Ww_4zY")
-        elif day4: 
+       elif day4: 
             webbrowser.open_new("https://www.youtube.com/watch?v=rHlb8yfdDzo")
-        elif day5: 
+       elif day5: 
             webbrowser.open_new("https://www.youtube.com/watch?v=zwAkH0XFrgw")
-        elif day6: 
+       elif day6: 
             webbrowser.open_new("https://www.youtube.com/watch?v=AesCuT1E_hw")
-        elif day7: 
+       elif day7: 
             webbrowser.open_new("https://www.youtube.com/watch?v=C4a0D36_e2E")
             
    def user_history(self):
-        """ Keeps a running log of workouts already assigned to ensure no repeats.
+       """ Keeps a running log of workouts already assigned to ensure no repeats.
        
-        Returns:
-            A list containing exercises performed by the user.
-        """
+       Returns:
+           A list containing exercises performed by the user.
+       """
        user_hist_list = list()
        workout = workoutplan()
        user_hist_list.append(workout)
@@ -130,12 +133,9 @@ class GetWorkout:
    
    def notification(self):
         """ Sends an email to the user containing recommended workout plan and user history information.
-            
-	    Returns:
-            message that contain the message sent to the user.
-
+            Side Effects: Sends notification to the user's email.
+	        Returns: message (str) = containing the message sent to the user.
         """
-
         port = 465 
         smtp_server = "smtp.gmail.com"
         sender_email = "fitnesstrackerINST326@gmail.com" #This email has been hacked. New email will be provided on the final project.
@@ -145,9 +145,9 @@ class GetWorkout:
         Subject: Hi {self.name}
  
  
-        Attached you can find your workout plan along with a copy of your user history information.
+       Attached you can find your workout plan along with a copy of your user history information.
       
-        This message is sent from Python."""
+       This message is sent from Python."""
         context = ssl.create_default_context()
         with smtplib.SMTP_SSL(smtp_server, port, context=context) as server:
            server.login(sender_email, password)
@@ -155,14 +155,13 @@ class GetWorkout:
            return message
       
 def parse_args(arglist): # only user_info arguments are constructed. Other arguments will later be constructed with more codes in main.
-    """ parse command-line arguments.
-    Args:
+   """ parse command-line arguments.
+Args:
         arglist (list of str): list of command-line arguments.
  
-    Returns:
+    	Returns:
         namespace: the parsed arguments
-    """
-
+"""
    parser = ArgumentParser()
    parser.add_argument("name")
    parser.add_argument("height", help="height of the user")
@@ -179,7 +178,7 @@ def main(name,height,weight,age,gender,email): # This main function currently ta
        height(int): height of the user in inches
        weight (int): weight of user in pounds
        age (int): age of the user
-       gender(str): male/female ('M' refers to male/ 'F' refers to female)
+       gender(str): male/female
        email(str): email address of user
    """
    g = GetWorkout(name,height,weight,age,gender,email)

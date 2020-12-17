@@ -164,10 +164,10 @@ Args:
 """
    parser = ArgumentParser()
    parser.add_argument("name")
-   parser.add_argument("height", help="height of the user")
-   parser.add_argument("weight", help="weight of the user")
+   parser.add_argument("height", help="height of the user in inches")
+   parser.add_argument("weight", help="weight of the user in pounds")
    parser.add_argument("age", help="age of the user")
-   parser.add_argument("gender", help="gender of the user")
+   parser.add_argument("gender", help="gender of the user in 'M'/'F'")
    parser.add_argument("email", help="email of the user")
    return parser.parse_args(arglist)
   
